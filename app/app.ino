@@ -25,10 +25,10 @@ bool force_shutdown = false;
 #define rst     10
 
 #define segL        13
-#define minL        13
-#define horL         6
-#define d_semL       5
-#define d_mesL       9
+#define minL        27
+#define horL         2
+#define d_semL       6
+#define d_mesL      10
 #define mesL         4
 #define anoL      2020
 
@@ -66,6 +66,16 @@ void loop() {
       status = true;
    } else {
       status = false;
+   }
+
+   // Se ano for igual a 2000 então entra em looping dizendo que está com ano errado
+   if (myRTC.year == 2000) {
+      while (true) {
+           digitalWrite(Relay1, LOW);
+           delay(500);
+           digitalWrite(Relay1, HIGH);
+           delay(500);
+      }
    }
 
    
